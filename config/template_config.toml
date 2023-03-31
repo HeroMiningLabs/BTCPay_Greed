@@ -1,0 +1,152 @@
+# greed configuration file
+
+# Language parameters
+[Language]
+# Available languages:
+# it - Italian, by https://github.com/Steffo99
+# en - English, by https://github.com/DarrenWestwood
+# uk - Ukrainian, by https://github.com/pzhuk and https://github.com/Trentyn
+# ru - Russian, by https://github.com/pzhuk
+# zh_cn - Simplified Chinese, by https://github.com/zhihuiyuze
+# he - Hebrew, by https://github.com/netanelkoli
+# es_mx - Spanish (Mexican), by https://github.com/mastersuv
+# pt_br - Brasilian by https://github.com/eufelipemateus
+# The lanugages that messages can be displayed in
+enabled_languages = ["it", "en", "uk", "ru", "zh_cn", "he", "es_mx", "pt_br"]
+# The default language to be set for users whose language cannot be autodetected or whose language is not enabled
+default_language = "it"
+# The language to fallback to if a string is missing in a specific language
+# You should set it to either "it" or "en", other languages may be missing some strings as greed is updated
+fallback_language = "en"
+
+
+# Database parameters
+[Database]
+# The database engine you want to use.
+# Refer to http://docs.sqlalchemy.org/en/latest/core/engines.html for the possible settings.
+# This value is ignored if you're running greed via Docker, or if the DB_ENGINE environment variable is set.
+engine = "sqlite:///database.sqlite"
+
+
+# Telegram bot parameters
+[Telegram]
+# Your bot token goes here. Get one from https://t.me/BotFather!
+token = "123456789:YOUR_TOKEN_GOES_HERE_______________"
+# Time in seconds before a conversation (thread) with no new messages expires
+# A lower value reduces memory usage, but can be inconvenient for the users
+conversation_timeout = 7200
+# Time to wait before sending another update request if there are no messages
+long_polling_timeout = 30
+# Time in seconds before retrying a request if it times out
+timed_out_pause = 1
+# Time in seconds before retrying a request that returned an error
+error_pause = 5
+# Number of connections to keep in the connection pool
+con_pool_size = 10
+
+
+# General payment settings
+[Payments]
+# ISO currency code
+currency = "EUR"
+# Currency exp parameter. You can find that on https://core.telegram.org/bots/payments/currencies.json.
+# It has a value of 2 in most currencies (EUR, USD, GBP...)
+currency_exp = 2
+# Currency symbol which is show to the client users when displaying prices and transaction values
+# If not defined here, default language specific currency symbol from strings would be used
+currency_symbol = "€"
+
+
+# Cash payment settings
+[Payments.Cash]
+# Display the "With cash" option in the Add Credit menu
+enable_pay_with_cash = false
+# Display the "Create transaction" option in the Manager menu
+enable_create_transaction = true
+# Customize the cash payment text in the strings files!
+
+
+# Credit card payment settings
+[Payments.CreditCard]
+# Telegram Payments provider token obtainable at https://t.me/BotFather in the bot's Payments menu
+# If empty, credit card payments are disabled.
+# credit_card_token = ""
+credit_card_token = "123456789:YOUR_TOKEN_HERE_"
+# Minimum wallet payment accepted (in miniumum currency units, $1.00 = 100 units)
+min_amount = 1000
+# Maximum wallet payment accepted (in miniumum currency units, $1.00 = 100 units)
+max_amount = 10000
+# The preset selections that can be made when adding credit to the wallet with a credit card
+# Presets are pipe-separated |, and should never be outside the bounds provided by the min_amount and max_amount options
+payment_presets = [10.00, 25.00, 50.00, 100.00]
+# Suggested tip amounts in minimum currency units
+# Maximum 4 values; if the array is empty, the feature is disabled
+# Enabling this feature is not recommended, as it may be confusing for the users
+# tip_presets = [100, 250, 500, 1000]  # €1.00 €2.50 €5.00 €10.00
+tip_presets = []
+# Maximum tip amount in minimum currency units
+# max_tip_amount = 1000
+max_tip_amount = 0
+# Make the user pay a extra fee when adding credit to the wallet with a credit card
+# The formula for determining the total cost is:
+# cost = added_funds + added_funds * fee_percentage / 100 + fee_fixed
+# Set these values to 0 to disable the feature.
+fee_percentage = 2.9
+fee_fixed = 30
+# "Shipping" information
+# Telegram can ask for extra information when charging the user for a credit card transaction
+# Set to yes the data you want to be required
+# This data will be stored in the database
+name_required = true
+email_required = true
+phone_required = true
+
+
+# BTCPay payment settings
+[Payments.BTCPay]
+# your or shared btcpayserver url to calling Apis
+url = 'btcpayserver.example.com'
+# User API key on server store | get it from your Account -> Manage Account -> API Keys
+token = "YOUR_TOKEN_HERE_"
+# related storeId get it from btcpayserver store Dashboard
+storeId = 'YOUR_STORE_ID_HERE_'
+# Minimum wallet payment accepted (in miniumum currency units, $1.00 = 100 units)
+min_amount = 1
+# Maximum wallet payment accepted (in miniumum currency units, $1.00 = 100 units)
+max_amount = 10000
+# Enabling this feature is not recommended, as it may be confusing for the users
+# tip_presets = [100, 250, 500, 1000]  # €1.00 €2.50 €5.00 €10.00
+tip_presets = []
+# The preset selections that can be made when adding credit to the wallet with a credit card
+# Presets are pipe-separated |, and should never be outside the bounds provided by the min_amount and max_amount options
+payment_presets = [10.00, 25.00, 50.00, 100.00]
+# max_tip_amount = 1000
+max_tip_amount = 0
+# "Shipping" information
+# Telegram can ask for extra information when charging the user for a credit card transaction
+# Set to yes the data you want to be required
+# This data will be stored in the database
+name_required = false
+email_required = false
+phone_required = false
+
+
+# Bot appearance settings
+[Appearance]
+# Display the full order information to the customers instead of the shortened version
+# The full order information includes the order number and the timestamp of the order placement
+full_order_info = false
+# Allow balance refill during the order checkout in case of unsufficient balance
+refill_on_checkout = true
+# Display welcome message (conversation_after_start) when the user sends /start
+display_welcome_message = true
+
+
+# Logging settings
+[Logging]
+# The output format for the messages printed to the console
+# See https://docs.python.org/3/library/logging.html#logrecord-attributes for information about the {}-attributes
+format = "{asctime} | {threadName} | {name} | {message}"
+# Logging level: ignore all log entries with a level lower than the specified one
+# Valid options are FATAL, ERROR, WARNING, INFO, and DEBUG
+level = "INFO"
