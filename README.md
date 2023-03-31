@@ -1,11 +1,11 @@
-# Greed
+# Greed with BTCPayserver integration
 
-A [customizable](/config/template_config.toml), [multilanguage](/strings) Telegram shop bot with [Telegram Payments support](https://core.telegram.org/bots/payments)!  
+A [customizable](/config/template_config.toml), [multilanguage](/strings) Telegram shop bot with BTCPayserver integration !  
 
-\[ [**Documentation**](https://github.com/Steffo99/greed/wiki) | [Support](https://github.com/Steffo99/greed/issues/new/choose) \]
+\[ [**Documentation**](https://github.com/Steffo99/greed/wiki) \]
 
-![](https://i.imgur.com/FdT2tRV.png)
+![](https://i.imgur.com/RJT7Imt.png)
 
-![](https://i.imgur.com/rDYWdUB.png)
+![](https://i.imgur.com/mKRIQpw.png)
 
-![](https://i.imgur.com/9plMzO6.png)
+![](https://i.imgur.com/32pMxlz.png)
